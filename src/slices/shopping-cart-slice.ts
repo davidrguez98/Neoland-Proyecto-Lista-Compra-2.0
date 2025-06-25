@@ -1,24 +1,39 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { mocksProducts } from "../modules/mocks-product";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { obtenerDatosPruebaBBDD } from "../models/mock-products-model";
 
 
-interface IProduct {
+interface IProducto {
     id: number,
     name: string,
     price: number,
     quantity: number
 }
 
-interface IShoppingCart {
-    products: IProduct[]
+interface IEstadoCarrito {
+    productos: IProducto[],
+    total: number
 }
 
-const defaultState: IShoppingCart = {
-    products: mocksProducts
+const estadoInicialCarrito: IEstadoCarrito = {
+    productos: [],
+    total: 0
 }
 
 const carritoSlice = createSlice({
     name: "Shopping Cart",
-    initialState: defaultState,
-    reducers
+    initialState: estadoInicialCarrito,
+    reducers: {
+        guardarProductosCache: (state) => {
+            state.productos = obtenerDatosPruebaBBDD()
+        },
+        incrementarProductoCache: () => {
+            
+        }
+    }
 })
+
+const carritoReducer = carritoSlice.reducer
+
+export const {guardarProductosCache} = carritoSlice.actions
+
+export default carritoReducer

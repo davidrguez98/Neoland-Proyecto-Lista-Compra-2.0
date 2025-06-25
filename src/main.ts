@@ -1,24 +1,15 @@
-import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
+import { guardarProductosCache } from "./slices/shopping-cart-slice"
+import store from "./store/store"
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+function main() {
+  console.log("Estado inicial")
+  console.log(store.getState().miPrimerSlice.productos)
+  
+  console.log("Cargar base de datos y guardar en la store")
+  store.dispatch(guardarProductosCache())
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+  console.log("Muestro datos de mi store")
+  console.log(store.getState().miPrimerSlice.productos)
+}
+
+document.addEventListener("DOMContentLoaded", main)
