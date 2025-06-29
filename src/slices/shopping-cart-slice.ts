@@ -11,12 +11,14 @@ interface IProducto {
 
 interface IEstadoCarrito {
     productos: IProducto[],
-    total: number
+    shipping: number,
+    totalPrice: number
 }
 
 const estadoInicialCarrito: IEstadoCarrito = {
     productos: [],
-    total: 0
+    shipping: 10,
+    totalPrice: 0
 }
 
 const carritoSlice = createSlice({
@@ -25,15 +27,29 @@ const carritoSlice = createSlice({
     reducers: {
         guardarProductosCache: (state) => {
             state.productos = obtenerDatosPruebaBBDD()
+            state.totalPrice += state.shipping
+
+            state.productos.forEach((product) => {
+                state.totalPrice += (product.price * product.quantity) || 0
+            })
         },
-        incrementarProductoCache: () => {
-            
+        incrementarProductoCache: (state, action: PayloadAction<Partial<IProducto["id"]>>) => {
+
+            const foundProduct = state.productos.map((product) => {
+                if (product.id === action.payload) {product.quantity++}
+
+                return product
+            })
+
+            state.productos = foundProduct
+
+            console.log(foundProduct)
         }
     }
 })
 
 const carritoReducer = carritoSlice.reducer
 
-export const {guardarProductosCache} = carritoSlice.actions
+export const {guardarProductosCache, incrementarProductoCache} = carritoSlice.actions
 
 export default carritoReducer

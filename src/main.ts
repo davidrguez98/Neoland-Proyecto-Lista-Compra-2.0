@@ -1,5 +1,5 @@
-import { guardarProductosCache } from "./slices/shopping-cart-slice"
 import store from "./store/store"
+import { guardarProductosCache, incrementarProductoCache } from "./slices/shopping-cart-slice"
 
 function main() {
   console.log("Estado inicial")
@@ -9,7 +9,12 @@ function main() {
   store.dispatch(guardarProductosCache())
 
   console.log("Muestro datos de mi store")
-  console.log(store.getState().miPrimerSlice.productos)
+  console.log(store.getState().miPrimerSlice)
+
+  store.dispatch(incrementarProductoCache(5))
+
+  console.log(store.getState().miPrimerSlice)
+
 }
 
 document.addEventListener("DOMContentLoaded", main)
