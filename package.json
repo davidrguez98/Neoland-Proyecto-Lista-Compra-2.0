@@ -4,18 +4,23 @@
   "version": "1.0.0",
   "type": "module",
   "main": "index.js",
-  "keywords": [],
-  "author": "davidrguez98",
-  "license": "ISC",
-  "description": "",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watchAll"
   },
+  "keywords": [],
+  "author": "davidrguez98",
+  "license": "ISC",
+  "description": "",
   "devDependencies": {
-    "typescript": "~5.8.3",
-    "vite": "^7.0.3"
+    "@types/jest": "30.0.0",
+    "jest": "30.0.4",
+    "jest-environment-jsdom": "30.0.4",
+    "ts-jest": "29.4.0",
+    "typescript": "5.8.3",
+    "vite": "7.0.3"
   }
 }
