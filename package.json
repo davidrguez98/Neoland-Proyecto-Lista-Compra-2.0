@@ -1,40 +1,21 @@
 {
-  "name": "neoland-proyecto-lista-compra-2.0",
+  "name": "neoland-proyecto-lista-compra-2-0",
   "private": true,
   "version": "1.0.0",
-  "main": "app.js",
+  "type": "module",
+  "main": "index.js",
+  "keywords": [],
+  "author": "davidrguez98",
+  "license": "ISC",
+  "description": "",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "jest",
-    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watchAll"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/davidrguez98/Neoland-Proyecto-Lista-Compra-2.0.git"
-  },
-  "keywords": [],
-  "author": "davidrguez98",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/davidrguez98/Neoland-Proyecto-Lista-Compra-2.0/issues"
-  },
-  "homepage": "https://github.com/davidrguez98/Neoland-Proyecto-Lista-Compra-2.0#readme",
-  "description": "",
   "devDependencies": {
-    "@types/jest": "30.0.0",
-    "jest": "30.0.3",
-    "jest-environment-jsdom": "30.0.2",
-    "sass": "1.89.2",
-    "ts-jest": "29.4.0",
     "typescript": "~5.8.3",
-    "vite": "6.0.0",
-    "vite-plugin-pwa": "1.0.0"
-  },
-  "dependencies": {
-    "@popperjs/core": "2.11.8",
-    "@reduxjs/toolkit": "2.8.2",
-    "bootstrap": "5.3.7"
+    "vite": "^7.0.3"
   }
 }
