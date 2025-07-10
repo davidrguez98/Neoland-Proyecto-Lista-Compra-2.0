@@ -57,14 +57,14 @@ export default defineConfig({
                 // Configuración para diferentes factores de forma
                 screenshots: [
                     {
-                        src: 'icons/icon-512.png',
-                        sizes: '512x512',
+                        src: 'icons/icon-320.png',
+                        sizes: '320x320',
                         type: 'image/png',
                         form_factor: 'wide'
                     },
                     {
-                        src: 'icons/icon-192.png',
-                        sizes: '192x192',
+                        src: 'icons/icon-320.png',
+                        sizes: '320x320',
                         type: 'image/png',
                         form_factor: 'narrow'
                     }
