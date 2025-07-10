@@ -18,6 +18,9 @@ export default defineConfig({
     plugins: [
         VitePWA({
             registerType: 'autoUpdate',
+            workbox: {
+                globPatterns: ['**/*.{js,css,html,ico,png,svg}']
+            },
             manifest: {
                 name: 'Sistema de venta de cafe',
                 short_name: 'StockApp',
@@ -27,19 +30,43 @@ export default defineConfig({
                 theme_color: '#1d4ed8',
                 icons: [
                     {
-                        src: '/icons/icon-144.png', //añadir iconos
+                        src: 'icons/icon-64.png',
+                        sizes: '64x64', 
+                        type: 'image/png',
+                        purpose: 'any maskable'
+                    },
+                    {
+                        src: 'icons/icon-144.png',
                         sizes: '144x144', 
-                        type: 'image/png'
+                        type: 'image/png',
+                        purpose: 'any maskable'
                     },
                     {
-                        src: '/icons/icon-192.png', //añadir iconos
+                        src: 'icons/icon-192.png',
                         sizes: '192x192', 
-                        type: 'image/png'
+                        type: 'image/png',
+                        purpose: 'any maskable'
                     },
                     {
-                        src: '/icons/icon-512.png', //añadir iconos
+                        src: 'icons/icon-512.png',
                         sizes: '512x512',
-                        type: 'image/png'
+                        type: 'image/png',
+                        purpose: 'any maskable'
+                    }
+                ],
+                // Configuración para diferentes factores de forma
+                screenshots: [
+                    {
+                        src: 'icons/icon-512.png',
+                        sizes: '512x512',
+                        type: 'image/png',
+                        form_factor: 'wide'
+                    },
+                    {
+                        src: 'icons/icon-192.png',
+                        sizes: '192x192',
+                        type: 'image/png',
+                        form_factor: 'narrow'
                     }
                 ]
             }
