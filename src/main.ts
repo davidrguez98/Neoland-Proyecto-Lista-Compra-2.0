@@ -1,6 +1,7 @@
-import {  } from "./models/users.model";
+import { getUser } from "./models/users.model";
 
 function main() {
+    getUser("admin", "0000")
 
 }
 
