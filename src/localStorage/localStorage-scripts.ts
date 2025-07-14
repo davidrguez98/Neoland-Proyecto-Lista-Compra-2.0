@@ -1,9 +1,9 @@
 export function setLocalStorage(key: string, value: {} | string) {
     if (key !== "" && value !== "") {
-        localStorage.setItem(key, JSON.stringify(value));
-        console.log("Set data:", key);
+        localStorage.setItem(key, JSON.stringify(value))
+        console.log("Set data:", key)
     } else {
-        console.error("Invalid key or value");
+        console.error("Invalid key or value")
     }
 }
 
@@ -15,8 +15,7 @@ export function readLocalStorage(key: string) {
     } 
     if (item) {
         const value = JSON.parse(item)
-        console.log("Data founded:", key, value);
-        return value;
+        return value
     }
 }
 

@@ -1,36 +1,48 @@
 import { usersBBDD } from "../BBDD/users-BBDD"
-import { readLocalStorage, setLocalStorage } from "../localStorage/localStorage-scripts"
+import { readLocalStorage, resetLocalStorage, setLocalStorage } from "../localStorage/localStorage-scripts"
 import { IUser } from "../types/user-type"
 
 
-export function getUsersBBDD(): IUser[] {
+function getUsersBBDD(): IUser[] {
     
     setLocalStorage("usersBBDD", usersBBDD)
     return readLocalStorage("usersBBDD")
 }
 
-export function checkUser(username: IUser["username"], password: IUser["password"]) {
+function checkUser(username: IUser["username"], password: IUser["password"]) {
     const usersList = getUsersBBDD()
 
     const userSelected = usersList.find(user => user.username === username && user.password === password)
 
     if (!userSelected) {
-        return false
+        console.log("Incorrect user")
+        return null
     }
     if (userSelected) {
         setLocalStorage("userLogged", userSelected)
-        return true
+        return userSelected
     }
 }
 
-export function getUser(username: IUser["username"], password: IUser["password"]) {
-    const checkedUser = checkUser(username, password)
+function getUser(): IUser | null {
+    const checkedUser = readLocalStorage("userLogged")
 
-    if (!checkedUser) { console.log("Usuario incorrecto") }
-    if (checkedUser) {
-        const userLogged = readLocalStorage("userLogged")
-        console.log(userLogged)
+    if (!checkedUser) {
+        return null
     }
 
-    
+    return checkedUser
+}
+
+export function logIn(username: IUser["username"], password: IUser["password"]) {
+    checkUser(username, password)
+    getUser()
+    console.log("Usuario loggeado")
+}
+
+export function logOut() {
+    if(readLocalStorage("userLogged")) {
+        resetLocalStorage("userLogged")
+        console.log("Eliminado")
+    }
 }
