@@ -1,10 +1,12 @@
-import { usersBBDD } from "../BBDD/users-BBDD"
-import { readLocalStorage, resetLocalStorage, setLocalStorage } from "../localStorage/localStorage-scripts"
+//Interfaces
 import { IUser } from "../types/user-type"
+
+// BBDD - LocalStorage
+import { usersBBDD } from "../BBDD/users-BBDD"
+import { setLocalStorage, readLocalStorage, resetLocalStorage } from "../localStorage/localStorage-scripts"
 
 
 function getUsersBBDD(): IUser[] {
-    
     setLocalStorage("usersBBDD", usersBBDD)
     return readLocalStorage("usersBBDD")
 }
