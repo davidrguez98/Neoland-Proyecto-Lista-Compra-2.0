@@ -8,7 +8,7 @@ export function getProductsBBDD(): IProduct[] | null {
     return Array.isArray(readLocalStorage("newList")) ? readLocalStorage("newList") : []
 }
 
-function getProductBBDD(productName: IProduct["productName"]): IProduct | null {
+export function getProductBBDD(productName: IProduct["productName"]): IProduct | null {
     const productsList: IProduct[] = readLocalStorage("newList")
 
     if (!productsList) {
@@ -69,31 +69,28 @@ export function newProduct(img: IProduct["img"], productName: IProduct["productN
     }
 }
 
-export function updateProduct(productName: IProduct["productName"], updateProductName: IProduct["productName"]) {
+export function updateProduct(productName: IProduct["productName"], updateProductName: IProduct["productName"], updateProductImg: IProduct["img"], updateProductDescription: IProduct["productDescription"], updateProductStock: IProduct["productStock"], updateProductPrice: IProduct["productPrice"],) {
     const productsList: IProduct[] = readLocalStorage("newList")
     
     if (!productsList) {
         return null
     }
 
-    const newImg = "foto cambiada" //Aqui tengo que añadirle el valor del campo
+    const newImg = updateProductImg //Aqui tengo que añadirle el valor del campo
     const newProductName = updateProductName //Aqui tengo que añadirle el valor del campo
-    const newProductDescription = "descripcion cambiada" //Aqui tengo que añadirle el valor del campo
-    const newProductStock = { "250": 6, "500": 7, "1000": 4 } //Aqui tengo que añadirle el valor del campo
-    const newProductPrice = { "250": 6, "500": 7, "1000": 4 } //Aqui tengo que añadirle el valor del campo
+    const newProductDescription = updateProductDescription //Aqui tengo que añadirle el valor del campo
+    const newProductStock = updateProductStock //Aqui tengo que añadirle el valor del campo
+    const newProductPrice = updateProductPrice //Aqui tengo que añadirle el valor del campo
     
     const checkProduct = productsList.find(product => product.productName === productName) || null
 
     if (checkProduct) {
-        let newProduct: IProduct = {
-            img: checkProduct.img = newImg,
-            productName: checkProduct.productName = newProductName,
-            productDescription: checkProduct.productDescription = newProductDescription,
-            productStock: checkProduct.productStock = newProductStock,
-            productPrice: checkProduct.productPrice = newProductPrice
-        }
+        checkProduct.img = newImg,
+        checkProduct.productName = newProductName,
+        checkProduct.productDescription = newProductDescription,
+        checkProduct.productStock = newProductStock,
+        checkProduct.productPrice = newProductPrice
 
-        // productsList.push(newProduct)
         setLocalStorage("newList", productsList)
     }
 }
