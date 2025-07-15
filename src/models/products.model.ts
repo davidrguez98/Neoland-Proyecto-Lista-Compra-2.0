@@ -33,10 +33,26 @@ export function newProduct(img: IProduct["img"], productName: IProduct["productN
         return null
     }
 
-    const checkProduct = getProductBBDD(productName)
+    const checkProduct = productsList.find(product => product.productName === productName) || null
 
     if (checkProduct) {
-        console.log("producto repetido")
+        if (checkProduct.productStock != productStock) {
+            const newQuantity250 = checkProduct.productStock[250] += productStock[250] 
+            const newQuantity500 = checkProduct.productStock[500] += productStock[500] 
+            const newQuantity1000 = checkProduct.productStock[1000] += productStock[1000]
+
+            checkProduct.productStock = {250: newQuantity250, 500: newQuantity500, 1000: newQuantity1000}
+        }
+
+        if (checkProduct.productPrice != productPrice) {
+            const newPrice250 = productPrice[250]
+            const newPrice500 = productPrice[500]
+            const newPrice1000 = productPrice[1000]
+
+            checkProduct.productPrice = {250: newPrice250, 500: newPrice500, 1000: newPrice1000}
+        }
+
+        setLocalStorage("newList", productsList)
     }
     
     if (!checkProduct) {
@@ -77,8 +93,7 @@ export function updateProduct(productName: IProduct["productName"], updateProduc
             productPrice: checkProduct.productPrice = newProductPrice
         }
 
-        productsList.push(newProduct)
-
+        // productsList.push(newProduct)
         setLocalStorage("newList", productsList)
     }
 }
