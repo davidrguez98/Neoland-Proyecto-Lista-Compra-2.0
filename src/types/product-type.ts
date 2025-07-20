@@ -2,8 +2,8 @@ export interface IProduct {
     img: string,
     productName: string,
     productDescription: string,
-    productStock: {250: number, 500: number, 1000: number},
-    productPrice: {250: number, 500: number, 1000: number},
+    productStock: {"250": number, "500": number, "1000": number},
+    productPrice: {"250": number, "500": number, "1000": number},
 }
 
 
